@@ -1,0 +1,35 @@
+0011 0000 0000 0000 ;x3000 starting address
+
+0101 000 000 1 00000 ;R0 <-R0 AND 0 (counter) [x3001]
+0101 001 001 1 00000 ;R1 <-R1 AND 0 (array memory address) [x3002]
+0101 010 010 1 00000 ;R2 <-R2 AND 0 (temporary value storage) [x3003]
+0101 011 011 1 00000 ;R3 <-R3 AND 0 (final sum of positives) [x3004]
+
+0001 000 000 1 01010 ;R0 <- R0 + 10 [x3005]
+1110 001 011111001 ;R1 <- x3007 + 249 (stores x3100 address) [x3006]
+0110 010 001 000000 ;R2 <-M[R1] stores value at array memory address [x3007]
+0000 100 000000001 ;skip next step if the value was not positive [x3008]
+0001 011 011 0 00010 ;R3 <-R3+R2 [x3009]
+0001 001 001 1 00001 ;R1 <- R1 + 1 increment to next address in array [x300A]
+0001 000 000 1 11111 ;R0 <- R0 + (-1) Deincrement counter [x300B]
+0000 001 111111010 ;back to x3007 if counter not positive [x300C]
+
+0101 100 100 1 00000 ;R4<-R4 AND 0 (final sum of negatives) [x300D]
+0010 001 000001011 ;R1 <- x300F + 11 (to x301A, x3200 in memory) [x300E]
+0101 010 010 1 00000 ;R2 <- R2 AND 0 (erase R2) [x300F]
+0110 010 001 000000 ;R2 <-M[R1] stores value at array memory address [x3010]
+0001 010 010 1 00001 ;R2 <- R2 + 1 (checking if R2 = -1) [x3011]
+0000 010 000000100 ;BRz (Branch if R2 + 1 = 0) [x3012]
+0000 001 000000001 ;skip next step if the value was not negative [x3013]
+0001 100 100 0 00010 ;R4 <- R4+R2 [x3014]
+0001 001 001 1 00001 ;R1 <- R1 + 1 increment to next address in array [x3015]
+0000 111 111111001 ;BRnzp (go back to x3010) [x3016]
+
+1011 011 000000011 ;Put R3 to x4000 [x3017]
+1011 100 000000011 ;put R4 to x4001 [x3018]
+
+1111 0000 0010 0101 ;HALT [x3019]
+
+0011 0010 0000 0000 ;x3200 [x301A]
+0100 0000 0000 0000 ;x4000 [x301B]
+0100 0000 0000 0001 ;x4001 [x301C]
