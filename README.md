@@ -1,4 +1,4 @@
-# Introduction to Computing (ECE 120) - Spring 2025
+# Introduction to Computing (ECE 120)
 Collection of lab assignments for ECE 120 Introduction to Computing
 
 ## Course Description
