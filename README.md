@@ -6,7 +6,7 @@ Introduction to digital logic, computer systems, and computer languages. Topics 
 
 ## Course Information
 - **Institution:** University of Illinois Urbana-Champaign
-- **Course Director:** Zuofu Cheng
+- **Course Director:** Steve Lumetta
 - **Subject Area:** Computer Engineering
 
 ## Topics Covered
